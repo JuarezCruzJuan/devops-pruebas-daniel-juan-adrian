@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "calculadora-api-tests",
+		"name": "Calculadora API - Pruebas Funcionales",
+		"description": "Colección de pruebas funcionales para la API de calculadora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Health Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"API está funcionando\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");",
+							"    pm.expect(jsonData.message).to.include(\"funcionando\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"health"
+					]
+				}
+			}
+		},
+		{
+			"name": "2. Prueba Suma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Suma correcta 5 + 3 = 8\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultado).to.eql(8);",
+							"    pm.expect(jsonData.operacion).to.eql(\"suma\");",
+							"    pm.expect(jsonData.a).to.eql(5);",
+							"    pm.expect(jsonData.b).to.eql(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\": 5,\n    \"b\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/suma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"suma"
+					]
+				}
+			}
+		},
+		{
+			"name": "3. Prueba Resta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Resta correcta 10 - 4 = 6\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultado).to.eql(6);",
+							"    pm.expect(jsonData.operacion).to.eql(\"resta\");",
+							"    pm.expect(jsonData.a).to.eql(10);",
+							"    pm.expect(jsonData.b).to.eql(4);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\": 10,\n    \"b\": 4\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/resta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"resta"
+					]
+				}
+			}
+		},
+		{
+			"name": "4. Prueba Multiplicación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Multiplicación correcta 7 * 6 = 42\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultado).to.eql(42);",
+							"    pm.expect(jsonData.operacion).to.eql(\"multiplicacion\");",
+							"    pm.expect(jsonData.a).to.eql(7);",
+							"    pm.expect(jsonData.b).to.eql(6);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\": 7,\n    \"b\": 6\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/multiplicacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"multiplicacion"
+					]
+				}
+			}
+		},
+		{
+			"name": "5. Prueba División",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"División correcta 15 / 3 = 5\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultado).to.eql(5);",
+							"    pm.expect(jsonData.operacion).to.eql(\"division\");",
+							"    pm.expect(jsonData.a).to.eql(15);",
+							"    pm.expect(jsonData.b).to.eql(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\": 15,\n    \"b\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/division",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"division"
+					]
+				}
+			}
+		},
+		{
+			"name": "6. Prueba División por Cero (Error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400 (Bad Request)\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Error de división por cero\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error).to.include(\"cero\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\": 10,\n    \"b\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/division",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"division"
+					]
+				}
+			}
+		},
+		{
+			"name": "7. Prueba Operación Compleja",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Operación compleja (2 + 3) * 4 = 20\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultado).to.eql(20);",
+							"    pm.expect(jsonData.operacion).to.eql(\"operacion_compleja\");",
+							"    pm.expect(jsonData.formula).to.eql(\"(a + b) * c\");",
+							"    pm.expect(jsonData.a).to.eql(2);",
+							"    pm.expect(jsonData.b).to.eql(3);",
+							"    pm.expect(jsonData.c).to.eql(4);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\": 2,\n    \"b\": 3,\n    \"c\": 4\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/operacion-compleja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"operacion-compleja"
+					]
+				}
+			}
+		},
+		{
+			"name": "8. Prueba Suma con Negativos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Suma con negativos -5 + 3 = -2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.resultado).to.eql(-2);",
+							"    pm.expect(jsonData.operacion).to.eql(\"suma\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"a\": -5,\n    \"b\": 3\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/suma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"suma"
+					]
+				}
+			}
+		}
+	]
+}
